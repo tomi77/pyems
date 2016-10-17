@@ -19,6 +19,11 @@ Install package via ``pip``
 
    pip install pyems
 
+Documentation
+=============
+
+http://tomi77.github.io/pyems/
+
 API Usage
 =========
 
