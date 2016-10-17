@@ -14,17 +14,17 @@ Installation
 ============
 
 Install package via ``pip``
-::
 
-    pip install pyems
+.. sourcecode:: sh
+
+   pip install pyems
 
 API Usage
 =========
 
-::
+.. sourcecode:: python
 
-    from pyems import Api
+   from pyems import Api
 
-    api = Api('http://127.0.0.1:7777')
-    print api.list_streams()
-
+   api = Api('http://127.0.0.1:7777')
+   print api.list_streams()
