@@ -19,17 +19,17 @@ class Api(object):
               'audioCodecBytes', 'spsBytes', 'ppsBytes', 'ssmIp', 'httpProxy')
     def pull_stream(self, uri, **kwargs):
         """
-        This will try to pull in a stream from an external source. Once a stream
-        has been successfully pulled it is assigned a 'local stream name' which can
-        be used to access the stream from the EMS.
+        This will try to pull in a stream from an external source. Once a
+        stream has been successfully pulled it is assigned a 'local stream
+        name' which can be used to access the stream from the EMS.
 
         :param uri: The URI of the external stream. Can be RTMP, RTSP or
             unicast/multicast (d) mpegts
         :type uri: str
 
         :param keepAlive: If keepAlive is set to 1, the server will attempt to
-            reestablish connection with a stream source after a connection has been
-            lost. The reconnect will be attempted once every second
+            reestablish connection with a stream source after a connection has
+            been lost. The reconnect will be attempted once every second
             (default: 1 true)
         :type keepAlive: int
 
@@ -39,12 +39,12 @@ class Api(object):
         :type localStreamName: str
 
         :param forceTcp: If 1 and if the stream is RTSP, a TCP connection will
-            be forced. Otherwise the transport mechanism will be negotiated (UDP
-            or TCP) (default: 1 true)
+            be forced. Otherwise the transport mechanism will be negotiated
+            (UDP or TCP) (default: 1 true)
         :type forceTcp: int
 
-        :param tcUrl: When specified, this value will be used to set the TC URL in
-            the initial RTMP connect invoke
+        :param tcUrl: When specified, this value will be used to set the TC URL
+            in the initial RTMP connect invoke
         :type tcUrl: str
 
         :param pageUrl: When specified, this value will be used to set the
@@ -55,16 +55,16 @@ class Api(object):
             originating swf URL in the initial RTMP connect invoke
         :type swfUrl: str
 
-        :param rangeStart: For RTSP and RTMP connections. A value from which the
-            playback should start expressed in seconds. There are 2 special values:
-            -2 and -1. For more information, please read about start/len
-            parameters here:
+        :param rangeStart: For RTSP and RTMP connections. A value from which
+            the playback should start expressed in seconds. There are 2 special
+            values: -2 and -1. For more information, please read about
+            start/len parameters here:
             http://livedocs.adobe.com/flashmediaserver/3.0/hpdocs/help.html?content=00000185.html
         :type rangeStart: int
 
-        :param rangeEnd: The length in seconds for the playback. -1 is a special
-            value. For more information, please read about start/len parameters
-            here:
+        :param rangeEnd: The length in seconds for the playback. -1 is a
+            special value. For more information, please read about start/len
+            parameters here:
             http://livedocs.adobe.com/flashmediaserver/3.0/hpdocs/help.html?content=00000185.html
         :type rangeEnd: int
 
@@ -74,9 +74,9 @@ class Api(object):
         :param tos: Sets the IP_TOS (Type of Service) option on the socket
         :type tos: int
 
-        :param rtcpDetectionInterval: How much time (in seconds) should the server
-            wait for RTCP packets before declaring the RTSP stream as a RTCP-less
-            stream
+        :param rtcpDetectionInterval: How much time (in seconds) should the
+            server wait for RTCP packets before declaring the RTSP stream as a
+            RTCP-less stream
         :type rtcpDetectionInterval: int
 
         :param emulateUserAgent: When specified, this value will be used as the
@@ -88,17 +88,17 @@ class Api(object):
             source is assumed as a video source
         :type isAudio: int
 
-        :param audioCodecBytes: The audio codec setup of this RTP stream if it is
-            audio. Represented as hex format without '0x' or 'h'. For example:
-            audioCodecBytes=1190
+        :param audioCodecBytes: The audio codec setup of this RTP stream if it
+            is audio. Represented as hex format without '0x' or 'h'. For
+            example: audioCodecBytes=1190
         :type audioCodecBytes: str
 
-        :param spsBytes: The video SPS bytes of this RTP stream if it is video. It
-            should be base 64 encoded.
+        :param spsBytes: The video SPS bytes of this RTP stream if it is video.
+            It should be base 64 encoded.
         :type spsBytes: str
 
-        :param ppsBytes: The video PPS bytes of this RTP stream if it is video. It
-            should be base 64 encoded
+        :param ppsBytes: The video PPS bytes of this RTP stream if it is video.
+            It should be base 64 encoded
         :type ppsBytes: str
 
         :param ssmIp: The source IP from source-specific-multicast. Only usable
@@ -121,16 +121,17 @@ class Api(object):
               'sendChunkSizeRequest', 'useSourcePts')
     def push_stream(self, uri, **kwargs):
         """
-        Try to push a local stream to an external destination. The pushed stream
-        can only use the RTMP, RTSP or MPEG-TS unicast/multicast protocol.
+        Try to push a local stream to an external destination. The pushed
+        stream can only use the RTMP, RTSP or MPEG-TS unicast/multicast
+        protocol.
 
         :param uri: The URI of the external stream. Can be RTMP, RTSP or
             unicast/multicast (d) mpegts
         :type uri: str
 
         :param keepAlive: If keepAlive is set to 1, the server will attempt to
-            reestablish connection with a stream source after a connection has been
-            lost. The reconnect will be attempted once every second
+            reestablish connection with a stream source after a connection has
+            been lost. The reconnect will be attempted once every second
             (default: 1 true)
         :type keepAlive: int
 
@@ -144,12 +145,12 @@ class Api(object):
             stream name
         :type targetStreamName: str
 
-        :param targetStreamType: It can be one of following: **live**, **record**,
-            **append**. It is meaningful only for RTMP
+        :param targetStreamType: It can be one of following: **live**,
+            **record**, **append**. It is meaningful only for RTMP
         :type targetStreamType: str
 
-        :param tcUrl: When specified, this value will be used to set the TC URL in
-            the initial RTMP connect invoke
+        :param tcUrl: When specified, this value will be used to set the TC
+            URL in the initial RTMP connect invoke
         :type tcUrl: str
 
         :param pageUrl: When specified, this value will be used to set the
@@ -170,21 +171,21 @@ class Api(object):
             user agent string. It is meaningful only for RTMP
         :type emulateUserAgent: str
 
-        :param rtmpAbsoluteTimestamps: Forces the timestamps to be absolute when
-            using RTMP.
+        :param rtmpAbsoluteTimestamps: Forces the timestamps to be absolute
+            when using RTMP.
         :type rtmpAbsoluteTimestamps: int
 
-        :param sendChunkSizeRequest: Sets whether the RTMP stream will or will not
-            send a "Set Chunk Length" message. This is significant when pushing to
-            Akamai's new RTMP HD ingest point where this parameter should be set
-            to 0 so that Akamai will not drop the connection.
+        :param sendChunkSizeRequest: Sets whether the RTMP stream will or will
+            not send a "Set Chunk Length" message. This is significant when
+            pushing to Akamai's new RTMP HD ingest point where this parameter
+            should be set to 0 so that Akamai will not drop the connection.
         :type sendChunkSizeRequest: int
 
-        :param useSourcePts: When value is true, timestamps on source inbound RTMP
-            stream are passed directly to the outbound (pushed) RTMP streams. This
-            affects only pushed Outbound Net RTMP with net RTMP source. This
-            parameter overrides the value of the config.lua option of the same
-            name.
+        :param useSourcePts: When value is true, timestamps on source inbound
+            RTMP stream are passed directly to the outbound (pushed) RTMP
+            streams. This affects only pushed Outbound Net RTMP with net RTMP
+            source. This parameter overrides the value of the config.lua
+            option of the same name.
         :type useSourcePts: int
 
         :link: http://docs.evostream.com/ems_api_definition/pushstream
@@ -196,13 +197,14 @@ class Api(object):
               'createMasterPlaylist', 'cleanupDestination', 'bandwidths',
               'groupName', 'playlistType', 'playlistLength', 'playlistName',
               'chunkLength', 'maxChunkLength', 'chunkBaseName', 'chunkOnIDR',
-              'drmType', 'AESKeyCount', 'audioOnly', 'hlsResume', 'cleanupOnClose',
-              'useByteRange', 'fileLength', 'useSystemTime', 'offsetTime',
-              'startOffset')
+              'drmType', 'AESKeyCount', 'audioOnly', 'hlsResume',
+              'cleanupOnClose', 'useByteRange', 'fileLength', 'useSystemTime',
+              'offsetTime', 'startOffset')
     def create_hls_stream(self, localStreamNames, targetFolder, **kwargs):
         """
-        Create an HTTP Live Stream (HLS) out of an existing H.264/AAC stream. HLS
-        is used to stream live feeds to iOS devices such as iPhones and iPads.
+        Create an HTTP Live Stream (HLS) out of an existing H.264/AAC stream.
+        HLS is used to stream live feeds to iOS devices such as iPhones and
+        iPads.
 
         :param localStreamNames: The stream(s) that will be used as the input.
             This is a comma-delimited list of active stream names (local stream
@@ -222,25 +224,27 @@ class Api(object):
             destination files.
         :type overwriteDestination: int
 
-        :param staleRetentionCount: The number of old files kept besides the ones
-            listed in the current version of the playlist. Only applicable for
-            rolling playlists.
+        :param staleRetentionCount: The number of old files kept besides the
+            ones listed in the current version of the playlist. Only
+            applicable for rolling playlists.
         :type staleRetentionCount: int
 
-        :param createMasterPlaylist: If true, a master playlist will be created.
+        :param createMasterPlaylist: If true, a master playlist will be
+            created.
         :type createMasterPlaylist: int
 
         :param cleanupDestination: If true, all *.ts and *.m3u8 files in the
             target folder will be removed before HLS creation is started.
         :type cleanupDestination: int
 
-        :param bandwidths: The corresponding bandwidths for each stream listed in
-            localStreamNames. Again, this can be a comma-delimited list.
+        :param bandwidths: The corresponding bandwidths for each stream listed
+            in localStreamNames. Again, this can be a comma-delimited list.
         :type bandwidths: int
 
         :param groupName: The name assigned to the HLS stream or group. If the
-            localStreamNames parameter contains only one entry and groupName is
-            not specified, groupName will have the value of the input stream name.
+            localStreamNames parameter contains only one entry and groupName
+            is not specified, groupName will have the value of the input
+            stream name.
         :type groupName: str
 
         :param playlistType: Either appending or rolling.
@@ -253,27 +257,29 @@ class Api(object):
         :param playlistName: The file name of the playlist (*.m3u8).
         :type playlistName: str
 
-        :param chunkLength: The length (in seconds) of each playlist element (*.ts
-            file). Minimum value is 1 (second).
+        :param chunkLength: The length (in seconds) of each playlist element
+            (*.ts file). Minimum value is 1 (second).
         :type chunkLength: int
 
-        :param maxChunkLength: Maximum length (in seconds) the EMS will allow any
-            single chunk to be. This is primarily in the case of chunkOnIDR=true
-            where the EMS will wait for the next key-frame. If the maxChunkLength
-            is less than chunkLength, the parameter shall be ignored.
+        :param maxChunkLength: Maximum length (in seconds) the EMS will allow
+            any single chunk to be. This is primarily in the case of
+            chunkOnIDR=true where the EMS will wait for the next key-frame. If
+            the maxChunkLength is less than chunkLength, the parameter shall
+            be ignored.
         :type maxChunkLength: int
 
         :param chunkBaseName: The base name used to generate the *.ts chunks.
         :type chunkBaseName: str
 
-        :param chunkOnIDR: If true, chunking is performed ONLY on IDR. Otherwise,
-            chunking is performed whenever chunk length is achieved.
+        :param chunkOnIDR: If true, chunking is performed ONLY on IDR.
+            Otherwise, chunking is performed whenever chunk length is
+            achieved.
         :type chunkOnIDR: int
 
         :param drmType: Type of DRM encryption to use. Options are: none
             (no encryption), evo (AES Encryption), SAMPLE-AES (Sample-AES),
-            verimatrix (Verimatrix DRM). For Verimatrix DRM, the "drm" section of
-            the config.lua file must be active and properly configured.
+            verimatrix (Verimatrix DRM). For Verimatrix DRM, the "drm" section
+            of the config.lua file must be active and properly configured.
         :type drmType: str
 
         :param AESKeyCount: Number of keys that will be automatically generated
@@ -284,34 +290,35 @@ class Api(object):
         :type audioOnly: int
 
         :param hlsResume: If true, HLS will resume in appending segments to
-            previously created child playlist even in cases of EMS shutdown or cut
-            off stream source.
+            previously created child playlist even in cases of EMS shutdown or
+            cut off stream source.
         :type hlsResume: int
 
-        :param cleanupOnClose: If true, corresponding hls files to a stream will
-            be deleted if the said stream is removed or shut down or disconnected.
+        :param cleanupOnClose: If true, corresponding hls files to a stream
+            will be deleted if the said stream is removed or shut down or
+            disconnected.
         :type cleanupOnClose: int
 
-        :param useByteRange: If true, will use the EXT-X-BYTERANGE feature of HLS
-            (version 4 and up).
+        :param useByteRange: If true, will use the EXT-X-BYTERANGE feature of
+            HLS (version 4 and up).
         :type useByteRange: int
 
-        :param fileLength: When using useByteRange=1, this parameter needs to be
-            set too. This will be the size of file before chunking it to another
-            file, this replace the chunkLength in case of EXT-X-BYTERANGE, since
-            chunkLength will be the byte range chunk.
+        :param fileLength: When using useByteRange=1, this parameter needs to
+            be set too. This will be the size of file before chunking it to
+            another file, this replace the chunkLength in case of
+            EXT-X-BYTERANGE, since chunkLength will be the byte range chunk.
         :type fileLength: int
 
-        :param useSystemTime: If true, uses UTC in playlist time stamp otherwise
-            will use the local server time.
+        :param useSystemTime: If true, uses UTC in playlist time stamp
+            otherwise will use the local server time.
         :type useSystemTime: int
 
         :param offsetTime:
         :type offsetTime: int
 
-        :param startOffset: A parameter valid only for HLS v.6 onwards. This will
-            indicate the start offset time (in seconds) for the playback of the
-            playlist.
+        :param startOffset: A parameter valid only for HLS v.6 onwards. This
+            will indicate the start offset time (in seconds) for the playback
+            of the playlist.
         :type startOffset: int
 
         :link: http://docs.evostream.com/ems_api_definition/createhlsstream
@@ -322,9 +329,9 @@ class Api(object):
 
     def create_hds_stream(self, localStreamNames, targetFolder, **kwargs):
         """
-        Create an HDS (HTTP Dynamic Streaming) stream out of an existing H.264/AAC
-        stream. HDS is used to stream standard MP4 media over regular HTTP
-        connections.
+        Create an HDS (HTTP Dynamic Streaming) stream out of an existing
+        H.264/AAC stream. HDS is used to stream standard MP4 media over
+        regular HTTP connections.
 
         :param localStreamNames: The stream(s) that will be used as the input.
             This is a comma-delimited list of active stream names (local stream
@@ -332,12 +339,13 @@ class Api(object):
         :type localStreamNames: str
 
         :param targetFolder: The folder where all the manifest (*.f4m) and
-            fragment (f4v*) files will be stored. This folder must be accessible
-            by the HDS clients. It is usually in the web-root of the server.
+            fragment (f4v*) files will be stored. This folder must be
+            accessible by the HDS clients. It is usually in the web-root of
+            the server.
         :type targetFolder: str
 
-        :param bandwidths: The corresponding bandwidths for each stream listed in
-            localStreamNames. Again, this can be a comma-delimited list.
+        :param bandwidths: The corresponding bandwidths for each stream listed
+            in localStreamNames. Again, this can be a comma-delimited list.
         :type bandwidths: int
 
         :param chunkBaseName: The base name used to generate the fragments.
@@ -347,13 +355,15 @@ class Api(object):
             Minimum value is 1 (second).
         :type chunkLength: int
 
-        :param chunkOnIDR: If true, chunking is performed ONLY on IDR. Otherwise,
-            chunking is performed whenever chunk length is achieved.
+        :param chunkOnIDR: If true, chunking is performed ONLY on IDR.
+            Otherwise, chunking is performed whenever chunk length is
+            achieved.
         :type chunkOnIDR: int
 
         :param groupName: The name assigned to the HDS stream or group. If the
-            localStreamNames parameter contains only one entry and groupName is
-            not specified, groupName will have the value of the input stream name.
+            localStreamNames parameter contains only one entry and groupName
+            is not specified, groupName will have the value of the input
+            stream name.
         :type groupName: str
 
         :param keepAlive: If true, the EMS will attempt to reconnect to the
@@ -370,21 +380,22 @@ class Api(object):
         :param playlistType: Either appending or rolling.
         :type playlistType: str
 
-        :param playlistLength: The number of fragments before the server starts to
-            overwrite the older fragments. Used only when playlistType is
-            "rolling". Ignored otherwise.
+        :param playlistLength: The number of fragments before the server
+            starts to overwrite the older fragments. Used only when
+            playlistType is "rolling". Ignored otherwise.
         :type playlistLength: int
 
-        :param staleRetentionCount: The number of old files kept besides the ones
-            listed in the current version of the playlist. Only applicable for
-            rolling playlists.
+        :param staleRetentionCount: The number of old files kept besides the
+            ones listed in the current version of the playlist. Only
+            applicable for rolling playlists.
         :type staleRetentionCount: int
 
-        :param createMasterPlaylist: If true, a master playlist will be created.
+        :param createMasterPlaylist: If true, a master playlist will be
+            created.
         :type createMasterPlaylist: int
 
-        :param cleanupDestination: If true, all manifest and fragment files in the
-            target folder will be removed before HDS creation is started.
+        :param cleanupDestination: If true, all manifest and fragment files in
+            the target folder will be removed before HDS creation is started.
         :type cleanupDestination: int
 
         :link: http://docs.evostream.com/ems_api_definition/createhdsstream
@@ -407,13 +418,14 @@ class Api(object):
         Returns a detailed set of information about a stream.
 
         :param id: The uniqueId of the stream. Usually a value returned by
-            listStreamsIDs. This parameter is not mandatory but either this or the
-            localStreamName should be present to identify the particular stream
+            listStreamsIDs. This parameter is not mandatory but either this or
+            the localStreamName should be present to identify the particular
+            stream
         :type id: int
 
         :param localStreamName: The name of the stream. This parameter is not
-            mandatory but either this or the id should be present to identify the
-            particular stream
+            mandatory but either this or the id should be present to identify
+            the particular stream
         :type localStreamName: str
 
         :link: http://docs.evostream.com/ems_api_definition/getstreaminfo
@@ -444,25 +456,25 @@ class Api(object):
     @expected('id', 'localStreamName', 'permanently')
     def shutdown_stream(self, **kwargs):
         """
-        Terminates a specific stream. When permanently=1 is used, this command is
-        analogous to removeConfig.
+        Terminates a specific stream. When permanently=1 is used, this command
+        is analogous to removeConfig.
 
         :param id: The uniqueId of the stream that needs to be terminated. The
             stream ID's can be obtained using the listStreams command. This
-            parameter is not mandatory but either this or localStreamName should be
-            present to identify the particular stream
+            parameter is not mandatory but either this or localStreamName
+            should be present to identify the particular stream
         :type id: int
 
-        :param localStreamName: The name of the inbound stream which you wish to
-            terminate. This will also terminate any outbound streams that are
-            dependent upon this input stream. This parameter is not mandatory but
-            either this or the id should be present to identify the particular
-            stream
+        :param localStreamName: The name of the inbound stream which you wish
+            to terminate. This will also terminate any outbound streams that
+            are dependent upon this input stream. This parameter is not
+            mandatory but either this or the id should be present to identify
+            the particular stream
         :type localStreamName: str
 
-        :param permanently: If true, the corresponding push/pull configuration will
-            also be terminated. Therefore, the stream will NOT be reconnected when
-            the server restarts
+        :param permanently: If true, the corresponding push/pull configuration
+            will also be terminated. Therefore, the stream will NOT be
+            reconnected when the server restarts
         :type permanently: int
 
         :link: http://docs.evostream.com/ems_api_definition/shutdownstream
@@ -476,8 +488,8 @@ class Api(object):
         Whenever the pullStream or pushStream interfaces are called, a record
         containing the details of the pull or push is created in the
         pullpushconfig.xml file. Then, the next time the EMS is started, the
-        pullpushconfig.xml file is read, and the EMS attempts to reconnect all of
-        the previous pulled or pushed streams.
+        pullpushconfig.xml file is read, and the EMS attempts to reconnect all
+        of the previous pulled or pushed streams.
 
         :link: http://docs.evostream.com/ems_api_definition/listconfig
         """
@@ -491,14 +503,14 @@ class Api(object):
         shutdownStream permanently=1.
 
         :param id: The configId of the configuration that needs to be removed.
-            ConfigId's can be obtained from the listConfig interface. Removing an
-            inbound stream will also automatically remove all associated outbound
-            streams.
+            ConfigId's can be obtained from the listConfig interface.
+            Removing an inbound stream will also automatically remove all
+            associated outbound streams.
         :type id: int
 
         :param groupName: The name of the group that needs to be removed
-            (applicable to HLS, HDS and external processes). Mandatory only if the
-            id parameter is not specified.
+            (applicable to HLS, HDS and external processes). Mandatory only if
+            the id parameter is not specified.
         :type groupName: str
 
         :param removeHlsHdsFiles: If 1 (true) and the stream is HLS or HDS, the
@@ -539,10 +551,11 @@ class Api(object):
     @expected('localStreamName', 'aliasName', 'expirePeriod')
     def add_stream_alias(self, localStreamName, aliasName, **kwargs):
         """
-        Allows you to create secondary name(s) for internal streams. Once an alias
-        is created the localstreamname cannot be used to request playback of that
-        stream. Once an alias is used (requested by a client) the alias is removed.
-        Aliases are designed to be used to protect/hide your source streams.
+        Allows you to create secondary name(s) for internal streams. Once an
+        alias is created the localstreamname cannot be used to request
+        playback of that stream. Once an alias is used (requested by a client)
+        the alias is removed. Aliases are designed to be used to protect/hide
+        your source streams.
 
         :param localStreamName: The original stream name
         :type localStreamName: str
@@ -550,16 +563,17 @@ class Api(object):
         :param aliasName: The alias alternative to the localStreamName
         :type aliasName: str
 
-        :param expirePeriod: The expiration period for this alias. Negative values
-            will be treated as one-shot but no longer than the absolute positive
-            value in seconds, 0 means it will not expire, positive values mean the
-            alias can be used multiple times but expires after this many seconds.
-            The default is -600 (one-shot, 10 mins)
+        :param expirePeriod: The expiration period for this alias. Negative
+            values will be treated as one-shot but no longer than the absolute
+            positive value in seconds, 0 means it will not expire, positive
+            values mean the alias can be used multiple times but expires after
+            this many seconds. The default is -600 (one-shot, 10 mins)
         :type expirePeriod: int
 
         :link: http://docs.evostream.com/ems_api_definition/addstreamalias
         """
-        return self.protocol.execute('addStreamAlias', localStreamName=localStreamName,
+        return self.protocol.execute('addStreamAlias',
+                                     localStreamName=localStreamName,
                                      aliasName=aliasName, **kwargs)
 
     def list_stream_aliases(self):
@@ -595,8 +609,8 @@ class Api(object):
         """
         Creates secondary name(s) for group names. Once an alias is created the
         group name cannot be used to request HTTP playback of that stream. Once
-        an alias is used (requested by a client) the alias is removed. Aliases are
-        designed to be used to protect/hide your source streams.
+        an alias is used (requested by a client) the alias is removed. Aliases
+        are designed to be used to protect/hide your source streams.
 
         :param groupName: The original group name
         :type groupName: str
@@ -627,7 +641,8 @@ class Api(object):
 
         :link: http://docs.evostream.com/ems_api_definition/getgroupnamebyalias
         """
-        return self.protocol.execute('getGroupNameByAlias', aliasName=aliasName)
+        return self.protocol.execute('getGroupNameByAlias',
+                                     aliasName=aliasName)
 
     def list_group_name_aliases(self):
         """
@@ -642,12 +657,14 @@ class Api(object):
         """
         Removes an alias of a group.
 
-        :param aliasName: The alias alternative to be removed from the group name.
+        :param aliasName: The alias alternative to be removed from the group
+            name.
         :type aliasName: str
 
         :link: http://docs.evostream.com/ems_api_definition/removegroupnamealiases
         """
-        return self.protocol.execute('removeGroupNameAlias', aliasName=aliasName)
+        return self.protocol.execute('removeGroupNameAlias',
+                                     aliasName=aliasName)
 
     def list_http_streaming_sessions(self):
         """
@@ -660,17 +677,17 @@ class Api(object):
     @expected('privateStreamName', 'publicStreamName')
     def create_ingest_point(self, privateStreamName, publicStreamName):
         """
-        Creates an RTMP ingest point, which mandates that streams pushed into the
-        EMS have a target stream name which matches one Ingest Point
+        Creates an RTMP ingest point, which mandates that streams pushed into
+        the EMS have a target stream name which matches one Ingest Point
         privateStreamName.
 
         :param privateStreamName: The name that RTMP Target Stream Names must
             match.
         :type privateStreamName: str
 
-        :param publicStreamName: The name that is used to access the stream pushed
-            to the privateStreamName. The publicStreamName becomes the streams
-            localStreamName.
+        :param publicStreamName: The name that is used to access the stream
+            pushed to the privateStreamName. The publicStreamName becomes the
+            streams localStreamName.
         :type publicStreamName: str
 
         :link: http://docs.evostream.com/ems_api_definition/createingestpoint
