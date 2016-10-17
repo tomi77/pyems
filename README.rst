@@ -33,3 +33,24 @@ API Usage
 
    api = Api('http://127.0.0.1:7777')
    print api.list_streams()
+
+Contribute
+==========
+
+Clone repo
+
+.. sourcecode:: sh
+
+ git clone git@github.com:tomi77/pyems.git
+
+Create virtualenv
+
+.. sourcecode:: sh
+
+ mkvirtualenv pyems
+
+Install documentation packages
+
+.. sourcecode:: sh
+
+ pip install sphinx sphinx-rtd-theme
