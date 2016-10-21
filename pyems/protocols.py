@@ -37,7 +37,7 @@ class HTTPProtocol(BaseProtocol):
         uri = '/%s' % command
         if len(params) > 0:
             str_params = ' '.join(['%s=%s' % (i, params[i]) for i in params])
-            uri += '?params=%s' % b64encode(str_params)
+            uri += '?params=%s' % b64encode(str_params.encode('ascii')).decode()
         return uri
 
     def get_result(self, command, **params):
