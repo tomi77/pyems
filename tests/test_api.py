@@ -15,47 +15,24 @@ class TestHTTPProtocol(HTTPProtocol):
 
 
 def load_test_data(filename):
-    return json.load(open(os.path.join(os.path.dirname(__file__), 'testdata', filename)))
-
-
-PULL_STREAM_TEST_DATA = load_test_data('pull_stream.json')
-PUSH_STREAM_TEST_DATA = load_test_data('push_stream.json')
-LIST_STREAMS_IDS_TEST_DATA = load_test_data('list_streams_ids.json')
-GET_STREAM_INFO_TEST_DATA = load_test_data('get_stream_info.json')
-LIST_STREAMS_TEST_DATA = load_test_data('list_streams.json')
-GET_STREAMS_COUNT_TEST_DATA = load_test_data('get_streams_count.json')
-SHUTDOWN_STREAM_TEST_DATA = load_test_data('shutdown_stream.json')
-LIST_CONFIG_TEST_DATA = load_test_data('list_config.json')
-REMOVE_CONFIG_TEST_DATA = load_test_data('remove_config.json')
-GET_CONFIG_INFO_TEST_DATA = load_test_data('get_config_info.json')
-ADD_STREAM_ALIAS_TEST_DATA = load_test_data('add_stream_alias.json')
-LIST_STREAM_ALIASES_TEST_DATA = load_test_data('list_stream_aliases.json')
-REMOVE_STREAM_ALIAS_TEST_DATA = load_test_data('remove_stream_alias.json')
-FLUSH_STREAM_ALIASES_TEST_DATA = load_test_data('flush_stream_aliases.json')
-ADD_GROUP_NAME_ALIAS_TEST_DATA = load_test_data('add_group_name_alias.json')
-FLUSH_GROUP_NAME_ALIASES_TEST_DATA = load_test_data('flush_group_name_aliases.json')
-GET_GROUP_NAME_BY_ALIAS_TEST_DATA = load_test_data('get_group_name_by_alias.json')
-LIST_GROUP_NAME_ALIASES_TEST_DATA = load_test_data('list_group_name_aliases.json')
-REMOVE_GROUP_NAME_ALIAS_TEST_DATA = load_test_data('remove_group_name_alias.json')
-LIST_HTTP_STREAMING_SESSIONS_TEST_DATA = load_test_data('list_http_streaming_sessions.json')
-CREATE_INGEST_POINT_TEST_DATA = load_test_data('create_ingest_point.json')
-REMOVE_INGEST_POINT_TEST_DATA = load_test_data('remove_ingest_point.json')
-LIST_INGEST_POINTS_TEST_DATA = load_test_data('list_ingest_points.json')
-CREATE_HLS_STREAM_TEST_DATA = load_test_data('create_hls_stream.json')
-CREATE_HDS_STREAM_TEST_DATA = load_test_data('create_hds_stream.json')
-IS_STREAM_RUNNING_TEST_DATA = load_test_data('is_stream_running.json')
+    fh = open(os.path.join(os.path.dirname(__file__), 'testdata', filename))
+    data = json.load(fh)
+    fh.close()
+    return data
 
 
 class EmsTestCase(TestCase):
+    file_data = None
     data = None
 
     def setUp(self):
+        self.data = load_test_data(self.file_data)
         self.api = Api('http://127.0.0.1:8000')
         self.api.protocol = TestHTTPProtocol(self.data)
 
 
 class PullStreamTestCase(EmsTestCase):
-    data = PULL_STREAM_TEST_DATA
+    file_data = 'pull_stream.json'
 
     def test_api(self):
         out = self.api.pull_stream(uri='rtmp://s2pchzxmtymn2k.cloudfront.net/cfx/st/mp4:sintel.mp4',
@@ -64,7 +41,7 @@ class PullStreamTestCase(EmsTestCase):
 
 
 class PushStreamTestCase(EmsTestCase):
-    data = PUSH_STREAM_TEST_DATA
+    file_data = 'push_stream.json'
 
     def test_api(self):
         out = self.api.push_stream(uri='rtmp://DestinationAddress/live',
@@ -73,7 +50,7 @@ class PushStreamTestCase(EmsTestCase):
 
 
 class ListStreamsIdsTestCase(EmsTestCase):
-    data = LIST_STREAMS_IDS_TEST_DATA
+    file_data = 'list_streams_ids.json'
 
     def test_api(self):
         out = self.api.list_streams_ids()
@@ -81,7 +58,7 @@ class ListStreamsIdsTestCase(EmsTestCase):
 
 
 class GetStreamInfoTestCase(EmsTestCase):
-    data = GET_STREAM_INFO_TEST_DATA
+    file_data = 'get_stream_info.json'
 
     def test_api(self):
         out = self.api.get_stream_info(id=1)
@@ -89,7 +66,7 @@ class GetStreamInfoTestCase(EmsTestCase):
 
 
 class ListStreamsTestCase(EmsTestCase):
-    data = LIST_STREAMS_TEST_DATA
+    file_data = 'list_streams.json'
 
     def test_api(self):
         out = self.api.list_streams()
@@ -97,7 +74,7 @@ class ListStreamsTestCase(EmsTestCase):
 
 
 class GetStreamsCountTestCase(EmsTestCase):
-    data = GET_STREAMS_COUNT_TEST_DATA
+    file_data = 'get_streams_count.json'
 
     def test_api(self):
         out = self.api.get_streams_count()
@@ -105,7 +82,7 @@ class GetStreamsCountTestCase(EmsTestCase):
 
 
 class ShutdownStreamTestCase(EmsTestCase):
-    data = SHUTDOWN_STREAM_TEST_DATA
+    file_data = 'shutdown_stream.json'
 
     def test_api(self):
         out = self.api.shutdown_stream(id=55)
@@ -113,7 +90,7 @@ class ShutdownStreamTestCase(EmsTestCase):
 
 
 class ListConfigTestCase(EmsTestCase):
-    data = LIST_CONFIG_TEST_DATA
+    file_data = 'list_config.json'
 
     def test_api(self):
         out = self.api.list_config()
@@ -121,7 +98,7 @@ class ListConfigTestCase(EmsTestCase):
 
 
 class RemoveConfigTestCase(EmsTestCase):
-    data = REMOVE_CONFIG_TEST_DATA
+    file_data = 'remove_config.json'
 
     def test_api(self):
         out = self.api.remove_config(id=555)
@@ -129,7 +106,7 @@ class RemoveConfigTestCase(EmsTestCase):
 
 
 class GetConfigInfoTestCase(EmsTestCase):
-    data = GET_CONFIG_INFO_TEST_DATA
+    file_data = 'get_config_info.json'
 
     def test_api(self):
         out = self.api.get_config_info(1)
@@ -137,7 +114,7 @@ class GetConfigInfoTestCase(EmsTestCase):
 
 
 class AddStreamAliasTestCase(EmsTestCase):
-    data = ADD_STREAM_ALIAS_TEST_DATA
+    file_data = 'add_stream_alias.json'
 
     def test_api(self):
         out = self.api.add_stream_alias('MyStream', 'video1', expirePeriod=-300)
@@ -145,7 +122,7 @@ class AddStreamAliasTestCase(EmsTestCase):
 
 
 class ListStreamAliasesTestCase(EmsTestCase):
-    data = LIST_STREAM_ALIASES_TEST_DATA
+    file_data = 'list_stream_aliases.json'
 
     def test_api(self):
         out = self.api.list_stream_aliases()
@@ -153,7 +130,7 @@ class ListStreamAliasesTestCase(EmsTestCase):
 
 
 class RemoveStreamAliasTestCase(EmsTestCase):
-    data = REMOVE_STREAM_ALIAS_TEST_DATA
+    file_data = 'remove_stream_alias.json'
 
     def test_api(self):
         out = self.api.remove_stream_alias(aliasName='video1')
@@ -161,7 +138,7 @@ class RemoveStreamAliasTestCase(EmsTestCase):
 
 
 class FlushStreamAliasesTestCase(EmsTestCase):
-    data = FLUSH_STREAM_ALIASES_TEST_DATA
+    file_data = 'flush_stream_aliases.json'
 
     def test_api(self):
         out = self.api.flush_stream_aliases()
@@ -169,7 +146,7 @@ class FlushStreamAliasesTestCase(EmsTestCase):
 
 
 class AddGroupNameAliasTestCase(EmsTestCase):
-    data = ADD_GROUP_NAME_ALIAS_TEST_DATA
+    file_data = 'add_group_name_alias.json'
 
     def test_api(self):
         out = self.api.add_group_name_alias(groupName='MyGroup', aliasName='TestGroupAlias')
@@ -177,7 +154,7 @@ class AddGroupNameAliasTestCase(EmsTestCase):
 
 
 class FlushGroupNameAliasesTestCase(EmsTestCase):
-    data = FLUSH_GROUP_NAME_ALIASES_TEST_DATA
+    file_data = 'flush_group_name_aliases.json'
 
     def test_api(self):
         out = self.api.flush_stream_aliases()
@@ -185,7 +162,7 @@ class FlushGroupNameAliasesTestCase(EmsTestCase):
 
 
 class GetGroupNameByAliasTestCase(EmsTestCase):
-    data = GET_GROUP_NAME_BY_ALIAS_TEST_DATA
+    file_data = 'get_group_name_by_alias.json'
 
     def test_api(self):
         out = self.api.get_group_name_by_alias(aliasName='TestGroupAlias')
@@ -193,7 +170,7 @@ class GetGroupNameByAliasTestCase(EmsTestCase):
 
 
 class ListGroupNameAliasesTestCase(EmsTestCase):
-    data = LIST_GROUP_NAME_ALIASES_TEST_DATA
+    file_data = 'list_group_name_aliases.json'
 
     def test_api(self):
         out = self.api.list_group_name_aliases()
@@ -201,7 +178,7 @@ class ListGroupNameAliasesTestCase(EmsTestCase):
 
 
 class RemoveGroupNameAliasTestCase(EmsTestCase):
-    data = REMOVE_GROUP_NAME_ALIAS_TEST_DATA
+    file_data = 'remove_group_name_alias.json'
 
     def test_api(self):
         out = self.api.remove_group_name_alias(aliasName='TestGroupAlias')
@@ -209,7 +186,7 @@ class RemoveGroupNameAliasTestCase(EmsTestCase):
 
 
 class ListHttpStreamingSessionsTestCase(EmsTestCase):
-    data = LIST_HTTP_STREAMING_SESSIONS_TEST_DATA
+    file_data = 'list_http_streaming_sessions.json'
 
     def test_api(self):
         out = self.api.list_http_streaming_sessions()
@@ -217,7 +194,7 @@ class ListHttpStreamingSessionsTestCase(EmsTestCase):
 
 
 class CreateIngestPointTestCase(EmsTestCase):
-    data = CREATE_INGEST_POINT_TEST_DATA
+    file_data = 'create_ingest_point.json'
 
     def test_api(self):
         out = self.api.create_ingest_point(privateStreamName='theIngestPoint', publicStreamName='useMeToViewStream')
@@ -225,7 +202,7 @@ class CreateIngestPointTestCase(EmsTestCase):
 
 
 class RemoveIngestPointTestCase(EmsTestCase):
-    data = REMOVE_INGEST_POINT_TEST_DATA
+    file_data = 'remove_ingest_point.json'
 
     def test_api(self):
         out = self.api.remove_ingest_point(privateStreamName='theIngestPoint')
@@ -233,7 +210,7 @@ class RemoveIngestPointTestCase(EmsTestCase):
 
 
 class ListIngestPointsTestCase(EmsTestCase):
-    data = LIST_INGEST_POINTS_TEST_DATA
+    file_data = 'list_ingest_points.json'
 
     def test_api(self):
         out = self.api.list_ingest_points()
@@ -241,7 +218,7 @@ class ListIngestPointsTestCase(EmsTestCase):
 
 
 class CreateHLSStreamTestCase(EmsTestCase):
-    data = CREATE_HLS_STREAM_TEST_DATA
+    file_data = 'create_hls_stream.json'
 
     def test_api(self):
         out = self.api.create_hls_stream('hlstest', '/MyWebRoot/', bandwidths=128, groupName='hls',
@@ -250,7 +227,7 @@ class CreateHLSStreamTestCase(EmsTestCase):
 
 
 class CreateHDSStreamTestCase(EmsTestCase):
-    data = CREATE_HDS_STREAM_TEST_DATA
+    file_data = 'create_hds_stream.json'
 
     def test_api(self):
         out = self.api.create_hds_stream('testpullStream', '../evo-webroot', groupName='hds', playlistType='rolling')
@@ -258,7 +235,7 @@ class CreateHDSStreamTestCase(EmsTestCase):
 
 
 class IsStreamRunningTestCase(EmsTestCase):
-    data = IS_STREAM_RUNNING_TEST_DATA
+    file_data = 'is_stream_running.json'
 
     def test_api(self):
         out = self.api.is_stream_running(id=1)
