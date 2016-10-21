@@ -126,7 +126,7 @@ class AddGroupNameAliasTestCase(EmsTestCase):
 
 class FlushGroupNameAliasesTestCase(EmsTestCase):
     def test_api(self):
-        out = self.api.flush_stream_aliases()
+        out = self.api.flush_group_name_aliases()
         self.assertIsNone(out)
 
 
