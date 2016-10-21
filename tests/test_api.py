@@ -3,8 +3,7 @@ import os
 import re
 import unittest
 
-from pyems import Api
-from pyems.protocols import HTTPProtocol
+import pyems
 
 try:
     from unittest import mock
@@ -12,37 +11,26 @@ except ImportError:
     import mock
 
 
-class TestHTTPProtocol(HTTPProtocol):
-    def __init__(self, data):
-        self.result = json.dumps(data)
-
-    def get_result(self, command, **params):
-        return self.result
-
-
 class Response:
     def __init__(self, filename):
-        self.filename = filename
+        fh = open(os.path.join(os.path.dirname(__file__), 'testdata', filename))
+        self.data = ''.join(fh.readlines())
+        fh.close()
 
     def read(self):
-        return ''.join(open(os.path.join(os.path.dirname(__file__), 'testdata', self.filename)).readlines())
-
-
-def load_test_data(filename):
-    fh = open(os.path.join(os.path.dirname(__file__), 'testdata', filename))
-    data = json.load(fh)
-    fh.close()
-    return data
+        return self.data
 
 
 class EmsTestCase(unittest.TestCase):
-    api = Api('http://127.0.0.1:8000')
+    api = pyems.Api('http://127.0.0.1:8000')
     data = None
+    response = None
 
     def setUp(self):
         filename = '%s.json' % re.sub('([A-Z])', '_\\1', self.__class__.__name__[:-8]).lower()[1:]
-        self.data = load_test_data(filename)
-        self.response = mock.MagicMock(return_value=Response(filename))
+        response = Response(filename)
+        self.data = json.loads(response.read())
+        self.response = mock.MagicMock(return_value=response)
 
 
 @mock.patch('pyems.protocols.HTTPConnection.request', mock.Mock())
