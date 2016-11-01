@@ -115,13 +115,13 @@ http://docs.evostream.com/ems_api_definition/pullstream
 Try to push a local stream to an external destination. The pushed stream
 can only use the RTMP, RTSP or MPEG-TS unicast/multicast protocol.
 
-Required
+Required:
 
 :``uri`` `(str)`:
     The URI of the external stream. Can be RTMP, RTSP or unicast/multicast
     (d) mpegts.
 
-Optional
+Optional:
 
 :``keepAlive`` `(int)`:
     If ``keepAlive`` is set to 1, the server will attempt to reestablish
