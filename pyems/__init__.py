@@ -327,6 +327,11 @@ class Api(object):
                                      localStreamNames=localStreamNames,
                                      targetFolder=targetFolder, **kwargs)
 
+    @expected('localStreamNames', 'targetFolder', 'bandwidths',
+              'chunkBaseName', 'chunkLength', 'chunkOnIDR', 'groupName',
+              'keepAlive', 'manifestName', 'overwriteDestination',
+              'playlistType', 'playlistLength', 'staleRetentionCount',
+              'createMasterPlaylist', 'cleanupDestination')
     def create_hds_stream(self, localStreamNames, targetFolder, **kwargs):
         """
         Create an HDS (HTTP Dynamic Streaming) stream out of an existing
