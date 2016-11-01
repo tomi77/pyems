@@ -1,0 +1,30 @@
+{
+  "data": {
+    "bandwidths": [
+      0
+    ],
+    "chunkLength": 10,
+    "chunkOnIDR": true,
+    "cleanupDestination": false,
+    "configIds": [
+      10
+    ],
+    "groupName": "mss",
+    "ingestMode": "single",
+    "isLive": "true",
+    "ismType": "ismc",
+    "keepAlive": true,
+    "localStreamNames": [
+      "testpullStream"
+    ],
+    "manifestName": "manifest.ismc",
+    "overwriteDestination": true,
+    "playlistLength": 10,
+    "playlistType": "appending",
+    "publishingPoint": "http://192.168.2.35:88/liveingest.isml",
+    "staleRetentionCount": 10,
+    "targetFolder": "..\/evo-webroot"
+  },
+  "description": "MSS stream created",
+  "status": "SUCCESS"
+}

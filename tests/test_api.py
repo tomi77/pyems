@@ -242,3 +242,11 @@ class IsStreamRunningTestCase(EmsTestCase):
         with mock.patch('pyems.protocols.HTTPConnection.getresponse', self.response):
             out = self.api.is_stream_running(id=1)
             self.assertDictEqual(out, self.data['data'])
+
+
+@mock.patch('pyems.protocols.HTTPConnection.request', mock.Mock())
+class CreateMssStreamTestCase(EmsTestCase):
+    def test_api(self):
+        with mock.patch('pyems.protocols.HTTPConnection.getresponse', self.response):
+            out = self.api.create_mss_stream('testpullStream', '../evo-webroot', groupName='mss')
+            self.assertDictEqual(out, self.data['data'])
