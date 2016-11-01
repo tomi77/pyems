@@ -250,3 +250,11 @@ class CreateMssStreamTestCase(EmsTestCase):
         with mock.patch('pyems.protocols.HTTPConnection.getresponse', self.response):
             out = self.api.create_mss_stream('testpullStream', '../evo-webroot', groupName='mss')
             self.assertDictEqual(out, self.data['data'])
+
+
+@mock.patch('pyems.protocols.HTTPConnection.request', mock.Mock())
+class CreateDashStreamTestCase(EmsTestCase):
+    def test_api(self):
+        with mock.patch('pyems.protocols.HTTPConnection.getresponse', self.response):
+            out = self.api.create_dash_stream('testpullStream', '../evo-webroot', groupName='dash')
+            self.assertDictEqual(out, self.data['data'])

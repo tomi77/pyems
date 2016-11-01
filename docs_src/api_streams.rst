@@ -352,6 +352,148 @@ Example:
 
 http://docs.evostream.com/ems_api_definition/createhdsstream
 
+``create_mss_stream``
+=====================
+
+Create a Microsoft Smooth Stream (MSS) out of an existing H.264/AAC
+stream. Smooth Streaming was developed by Microsoft to compete with
+other adaptive streaming technologies.
+
+Required:
+
+:``localStreamNames`` `(str)`: The stream(s) that will be used as the input.
+    This is a comma-delimited list of active stream names (local
+    stream names)
+
+:``targetFolder`` `(str)`: The folder where all the manifest and fragment
+    files will be stored. This folder must be accessible by the MSS
+    clients. It is usually in the web-root of the server.
+
+Optional:
+
+:``bandwidths`` `(str)`: The corresponding bandwidths for each stream listed
+    in ``localStreamNames``. Again, this can be a comma-delimited list.
+
+:``groupName`` `(str)`: The name assigned to the MSS stream or group. If the
+    ``localStreamNames`` parameter contains only one entry and groupName
+    is not specified, groupName will have the value of the input
+    stream name.
+
+:``playlistType`` `(str)`: Either `appending` or `rolling`
+
+:``playlistLength`` `(int)`: The number of fragments before the server
+    starts to overwrite the older fragments. Used only when
+    ``playlistType`` is `rolling`. Ignored otherwise.
+
+:``manifestName`` `(str)`: The manifest file name.
+
+:``chunkLength`` `(int)`: The length (in seconds) of fragments to be made.
+
+:``chunkOnIDR`` `(int)`: If 1 (true), chunking is performed ONLY on IDR.
+    Otherwise, chunking is performed whenever chunk length is
+    achieved.
+
+:``keepAlive`` `(int)`: If 1 (true), the EMS will attempt to reconnect to
+    the stream source if the connection is severed.
+
+:``overwriteDestination`` `(int)`: If 1 (true), it will allow overwrite of
+    destination files.
+
+:``staleRetentionCount`` `(int)`: How many old files are kept besides the
+    ones present in the current version of the playlist. Only
+    applicable for rolling playlists.
+
+:``cleanupDestination`` `(int)`: If 1 (true), all manifest and fragment
+    files in the target folder will be removed before MSS creation is
+    started.
+
+:``ismType`` `(int)`: Either ismc for serving content to client or isml for
+    serving content to smooth server.
+
+:``isLive`` `(int)`: If true, creates a live MSS stream, otherwise set to 0
+    for VOD.
+
+:``publishingPoint`` `(str)`: This parameter is needed when `ismType=isml`,
+    it is the REST URI where the mss contents will be ingested.
+
+:``ingestMode`` `(str)`: Either `single` for a non looping ingest or `loop`
+    for looping an ingest.
+
+Example:
+
+.. sourcecode:: python
+
+ api.create_mss_stream('testpullStream', '../evo-webroot', groupName='mss')
+
+http://docs.evostream.com/ems_api_definition/createmssstream
+
+``create_dash_stream``
+======================
+
+Create Dynamic Adaptive Streaming over HTTP (DASH) out of an existing
+H.264/AAC stream. DASH was developed by the Moving Picture Experts
+Group (MPEG) to establish a standard for HTTP adaptive-bitrate
+streaming that would be accepted by multiple vendors and facilitate
+interoperability.
+
+Required:
+
+:``localStreamNames`` `(str)`: The stream(s) that will be used as the
+    input. This is a comma-delimited list of active stream names
+    (local stream names).
+
+:``targetFolder`` `(str)`: The folder where all the manifest and fragment
+    files will be stored. This folder must be accessible by the DASH
+    clients. It is usually in the web-root of the server.
+
+Optional:
+
+:``bandwidths`` `(str)`: The corresponding bandwidths for each stream listed
+    in ``localStreamNames``. Again, this can be a comma-delimited list.
+
+:``groupName`` `(str)`: The name assigned to the DASH stream or group. If
+    the ``localStreamNames`` parameter contains only one entry and
+    ``groupName`` is not specified, ``groupName`` will have the value of
+    the input stream name.
+
+:``playlistType`` `(str)`: Either `appending` or `rolling`.
+
+:``playlistLength`` `(int)`: The number of fragments before the server
+    starts to overwrite the older fragments. Used only when
+    ``playlistType`` is `rolling`. Ignored otherwise.
+
+:``manifestName`` `(str)`: The manifest file name.
+
+:``chunkLength`` `(int)`: The length (in seconds) of fragments to be made.
+
+:``chunkOnIDR`` `(int)`: If true, chunking is performed ONLY on IDR.
+    Otherwise, chunking is performed whenever chunk length is
+    achieved.
+
+:``keepAlive`` `(int)`: If true, the EMS will attempt to reconnect to the
+    stream source if the connection is severed.
+
+:``overwriteDestination`` `(int)`: If true, it will allow overwrite of
+    destination files.
+
+:``staleRetentionCount`` `(int)`: How many old files are kept besides the
+    ones present in the current version of the playlist. Only
+    applicable for rolling playlists.
+
+:``cleanupDestination`` `(int)`: If true, all manifest and fragment files in
+    the target folder will be removed before DASH creation is started.
+
+:``dynamicProfile`` `(int)`: Set this parameter to 1 (default) for a live
+    DASH, otherwise set it to 0 for a VOD.
+
+Example:
+
+.. sourcecode:: python
+
+ api.create_dash_stream('testpullStream', '../evo-webroot', groupName='dash')
+
+http://docs.evostream.com/ems_api_definition/createdashstream
+
 ``list_streams_ids``
 ====================
 

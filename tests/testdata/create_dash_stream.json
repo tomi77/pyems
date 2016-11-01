@@ -1,0 +1,27 @@
+{
+  "data": {
+    "bandwidths": [
+      0
+    ],
+    "chunkLength": 10,
+    "chunkOnIDR": true,
+    "cleanupDestination": false,
+    "configIds": [
+      11
+    ],
+    "dynamicProfile": true,
+    "groupName": "dash",
+    "keepAlive": true,
+    "localStreamNames": [
+      "testpullStream"
+    ],
+    "manifestName": "manifest.mpd",
+    "overwriteDestination": true,
+    "playlistLength": 10,
+    "playlistType": "appending",
+    "staleRetentionCount": 10,
+    "targetFolder": ". .\/evo-webroot"
+  },
+  "description": "DASH stream created",
+  "status": "SUCCESS"
+}
