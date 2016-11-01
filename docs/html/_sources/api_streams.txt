@@ -494,6 +494,55 @@ Example:
 
 http://docs.evostream.com/ems_api_definition/createdashstream
 
+``record``
+==========
+
+Records any inbound stream. The record command allows users to record
+a stream that may not yet exist. When a new stream is brought into
+the server, it is checked against a list of streams to be recorded.
+
+Streams can be recorded as FLV files, MPEG-TS files or as MP4 files.
+
+Required:
+
+:``localStreamName`` `(str)`: The name of the stream to be used as input
+    for recording.
+
+:``pathToFile`` `(str)`: Specify path and file name to write to.
+
+Optional:
+
+:``type`` `(str)`: `ts`, `mp4` or `flv`
+
+:``overwrite`` `(int)`: If false, when a file already exists for the stream
+    name, a new file will be created with the next appropriate number
+    appended. If 1 (true), files with the same name will be
+    overwritten.
+
+:``keepAlive`` `(int)`: If 1 (true), the server will restart recording every
+    time the stream becomes available again.
+
+:``chunkLength`` `(int)`: If non-zero the record command will start a new
+    recording file after ChunkLength seconds have elapsed.
+
+:``waitForIDR`` `(int)`: This is used if the recording is being chunked.
+    When true, new files will only be created on IDR boundaries.
+
+:``winQtCompat`` `(int)`: Mandates 32bit header fields to ensure
+    compatibility with Windows QuickTime.
+
+:``dateFolderStructure`` `(int)`: If set to 1 (true), folders will be
+    created with names in `YYYYMMDD` format. Recorded files will be
+    placed inside these folders based on the date they were created.
+
+Example:
+
+.. sourcecode:: python
+
+ api.record('testpullstream', '../media/testRecord', type='mp4', overwrite=1)
+
+http://docs.evostream.com/ems_api_definition/record
+
 ``list_streams_ids``
 ====================
 

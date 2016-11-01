@@ -4,3 +4,4 @@
 
 * Add create_mss_stream
 * Add create_dash_stream
+* Add record

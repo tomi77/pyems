@@ -1,0 +1,21 @@
+{
+  "data": {
+    "chunkLength": 0,
+    "computedPathToFile": "..\/media\/testRecord.mp4",
+    "configId": 12,
+    "dateFolderStructure": false,
+    "hasAudio": true,
+    "keepAlive": true,
+    "localStreamName": "testpullstream",
+    "mp4BinPath": "..\\evo-mp4writer.exe",
+    "operationType": 7,
+    "overwrite": true,
+    "pathToFile": "..\/media\/testRecord ",
+    "preset": 0,
+    "type": "mp4",
+    "waitForIDR": false,
+    "winQtCompat": true
+  },
+  "description": "Recording Stream",
+  "status": "SUCCESS"
+}

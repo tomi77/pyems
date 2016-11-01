@@ -258,3 +258,11 @@ class CreateDashStreamTestCase(EmsTestCase):
         with mock.patch('pyems.protocols.HTTPConnection.getresponse', self.response):
             out = self.api.create_dash_stream('testpullStream', '../evo-webroot', groupName='dash')
             self.assertDictEqual(out, self.data['data'])
+
+
+@mock.patch('pyems.protocols.HTTPConnection.request', mock.Mock())
+class RecordTestCase(EmsTestCase):
+    def test_api(self):
+        with mock.patch('pyems.protocols.HTTPConnection.getresponse', self.response):
+            out = self.api.record('testpullstream', '../media/testRecord', type='mp4', overwrite=1)
+            self.assertDictEqual(out, self.data['data'])
