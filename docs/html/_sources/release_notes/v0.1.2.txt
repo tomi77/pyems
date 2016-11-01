@@ -2,6 +2,7 @@
 0.1.2
 =====
 
-* Add create_mss_stream
-* Add create_dash_stream
-* Add record
+* Add ``create_mss_stream``
+* Add ``create_dash_stream``
+* Add ``record``
+* Add ``transcode``

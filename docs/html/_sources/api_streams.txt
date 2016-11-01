@@ -543,6 +543,81 @@ Example:
 
 http://docs.evostream.com/ems_api_definition/record
 
+``transcode``
+=============
+
+Changes the compression characteristics of an audio and/or video
+stream. Allows you to change the resolution of a source stream, change
+the bitrate of a stream, change a VP8 or MPEG2 stream into H.264 and
+much more. Allow users to create overlays on the final stream as well
+as crop streams.
+
+Required:
+
+:``source`` `(str)`: Can be a URI or a local stream name from EMS.
+
+:``destinations`` `(str)`: The target URI(s) or stream name(s) of the
+    transcoded stream. If only a name is given, it will be pushed
+    back to the EMS.
+
+Optional:
+
+:``targetStreamNames`` `(str)`: The name of the stream(s) at destination(s).
+    If not specified, and a full URI is provided to destinations,
+    name will have a time stamped value.
+
+:``groupName`` `(str)`: The group name assigned to this process. If not
+    specified, groupName will have a random value.
+
+:``videoBitrates`` `(str)`: Target output video bitrate(s) (in bits/s,
+    append `k` to value for kbits/s). Accepts the value `copy` to
+    copy the input bitrate. An empty value passed would mean no video.
+
+:``videoSizes`` `(str)`: Target output video size(s) in wxh (width x height)
+    format. IE: `240x480`.
+
+:``videoAdvancedParamsProfiles`` `(str)`: Name of video profile template
+    that will be used.
+
+:``audioBitrates`` `(str)`: Target output audio bitrate(s) (in bits/s,
+    append `k` to value for kbits/s). Accepts the value `copy` to
+    copy the input bitrate. An empty value passed would mean no audio.
+
+:``audioChannelsCounts`` `(str)`: Target output audio channel(s) count(s).
+    Valid values are 1 (mono), 2 (stereo), and so on. Actual supported
+    channel count is dependent on the number of input audio channels.
+
+:``audioFrequencies`` `(str)`: Target output audio frequency(ies) (in Hz,
+    append `k` to value for kHz).
+
+:``audioAdvancedParamsProfiles`` `(str)`: Name of audio profile template
+    that will be used.
+
+:``overlays`` `(str)`: Location of the overlay source(s) to be used. These
+    are transparent images (normally in PNG format) that have the same
+    or smaller size than the video. Image is placed at the top-left
+    position of the video.
+
+:``croppings`` `(str)`: Target video cropping position(s) and size(s) in
+    `left : top : width : height` format (e.g. `0:0:200:100`. Positions
+    are optional (`200:100` for a centered cropping of `200` width and `100`
+    height in pixels). Values are limited to the actual size of the
+    video.
+
+:``keepAlive`` `(int)`: If keepAlive is set to 1, the server will restart
+    transcoding if it was previously activated.
+
+:``commandFlags`` `(str)`: Other commands to the transcode process that are
+    not supported by the baseline transcode command.
+
+Example:
+
+.. sourcecode:: python
+
+ api.transcode('rtmp://s2pchzxmtymn2k.cloudfront.net/cfx/st/mp4:sintel.mp4', 'stream1', groupName='group', videoBitrates='200k')
+
+http://docs.evostream.com/ems_api_definition/transcode
+
 ``list_streams_ids``
 ====================
 

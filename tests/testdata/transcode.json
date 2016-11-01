@@ -1,0 +1,47 @@
+{
+  "data": {
+    "audioAdvancedParamsProfiles": [
+      "na"
+    ],
+    "audioBitrates": [
+      "na"
+    ],
+    "audioChannelsCounts": [
+      "na"
+    ],
+    "audioFrequencies": [
+      "na"
+    ],
+    "croppings": [
+      "na"
+    ],
+    "destinations": [
+      "stream1"
+    ],
+    "dstUriPrefix": "-f flv tcp:\/\/localhost:6666\/",
+    "emsTargetStreamName": "stream1",
+    "fullBinaryPath": "C:\\EvoStream\\emsTranscoder.bat",
+    "groupName": "group",
+    "keepAlive": true,
+    "localStreamName": "",
+    "overlays": [
+      "na"
+    ],
+    "source": "rtmp:\/\/s2pchzxmtymn2k.cloudfront.net\/cfx\/st\/mp4:sintel.mp4",
+    "srcUriPrefix": "rtsp:\/\/localhost:5544\/",
+    "targetStreamNames": [
+      "stream1"
+    ],
+    "videoAdvancedParamsProfiles": [
+      "na"
+    ],
+    "videoBitrates": [
+      "200k"
+    ],
+    "videoSizes": [
+      "na"
+    ]
+  },
+  "description": "Transcoding successfully started.",
+  "status": "SUCCESS"
+}
