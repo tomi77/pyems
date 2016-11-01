@@ -93,6 +93,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#push-stream"><code class="docutils literal"><span class="pre">push_stream</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#create-hls-stream"><code class="docutils literal"><span class="pre">create_hls_stream</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#create-hds-stream"><code class="docutils literal"><span class="pre">create_hds_stream</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-mss-stream"><code class="docutils literal"><span class="pre">create_mss_stream</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-dash-stream"><code class="docutils literal"><span class="pre">create_dash_stream</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#list-streams-ids"><code class="docutils literal"><span class="pre">list_streams_ids</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#get-stream-info"><code class="docutils literal"><span class="pre">get_stream_info</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#list-streams"><code class="docutils literal"><span class="pre">list_streams</span></code></a></li>
@@ -551,6 +553,189 @@ target folder will be removed before HDS creation is started.</td>
 </pre></div>
 </div>
 <p><a class="reference external" href="http://docs.evostream.com/ems_api_definition/createhdsstream">http://docs.evostream.com/ems_api_definition/createhdsstream</a></p>
+</div>
+<div class="section" id="create-mss-stream">
+<h2><code class="docutils literal"><span class="pre">create_mss_stream</span></code><a class="headerlink" href="#create-mss-stream" title="Permalink to this headline">¶</a></h2>
+<p>Create a Microsoft Smooth Stream (MSS) out of an existing H.264/AAC
+stream. Smooth Streaming was developed by Microsoft to compete with
+other adaptive streaming technologies.</p>
+<p>Required:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">localStreamNames</span></code> <cite>(str)</cite>:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">The stream(s) that will be used as the input.
+This is a comma-delimited list of active stream names (local
+stream names)</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">targetFolder</span></code> <cite>(str)</cite>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">The folder where all the manifest and fragment
+files will be stored. This folder must be accessible by the MSS
+clients. It is usually in the web-root of the server.</td>
+</tr>
+</tbody>
+</table>
+<p>Optional:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">bandwidths</span></code> <cite>(str)</cite>:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">The corresponding bandwidths for each stream listed
+in <code class="docutils literal"><span class="pre">localStreamNames</span></code>. Again, this can be a comma-delimited list.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">groupName</span></code> <cite>(str)</cite>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">The name assigned to the MSS stream or group. If the
+<code class="docutils literal"><span class="pre">localStreamNames</span></code> parameter contains only one entry and groupName
+is not specified, groupName will have the value of the input
+stream name.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">playlistType</span></code> <cite>(str)</cite>:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">Either <cite>appending</cite> or <cite>rolling</cite></td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">playlistLength</span></code> <cite>(int)</cite>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">The number of fragments before the server
+starts to overwrite the older fragments. Used only when
+<code class="docutils literal"><span class="pre">playlistType</span></code> is <cite>rolling</cite>. Ignored otherwise.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">manifestName</span></code> <cite>(str)</cite>:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">The manifest file name.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">chunkLength</span></code> <cite>(int)</cite>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">The length (in seconds) of fragments to be made.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">chunkOnIDR</span></code> <cite>(int)</cite>:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">If 1 (true), chunking is performed ONLY on IDR.
+Otherwise, chunking is performed whenever chunk length is
+achieved.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">keepAlive</span></code> <cite>(int)</cite>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">If 1 (true), the EMS will attempt to reconnect to
+the stream source if the connection is severed.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">overwriteDestination</span></code> <cite>(int)</cite>:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">If 1 (true), it will allow overwrite of
+destination files.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">staleRetentionCount</span></code> <cite>(int)</cite>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">How many old files are kept besides the
+ones present in the current version of the playlist. Only
+applicable for rolling playlists.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">cleanupDestination</span></code> <cite>(int)</cite>:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">If 1 (true), all manifest and fragment
+files in the target folder will be removed before MSS creation is
+started.</td>
+</tr>
+<tr class="field-even field"><th class="field-name"><code class="docutils literal"><span class="pre">ismType</span></code> <cite>(int)</cite>:</th><td class="field-body">Either ismc for serving content to client or isml for
+serving content to smooth server.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name"><code class="docutils literal"><span class="pre">isLive</span></code> <cite>(int)</cite>:</th><td class="field-body">If true, creates a live MSS stream, otherwise set to 0
+for VOD.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">publishingPoint</span></code> <cite>(str)</cite>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">This parameter is needed when <cite>ismType=isml</cite>,
+it is the REST URI where the mss contents will be ingested.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">ingestMode</span></code> <cite>(str)</cite>:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">Either <cite>single</cite> for a non looping ingest or <cite>loop</cite>
+for looping an ingest.</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">create_mss_stream</span><span class="p">(</span><span class="s1">&#39;testpullStream&#39;</span><span class="p">,</span> <span class="s1">&#39;../evo-webroot&#39;</span><span class="p">,</span> <span class="n">groupName</span><span class="o">=</span><span class="s1">&#39;mss&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="http://docs.evostream.com/ems_api_definition/createmssstream">http://docs.evostream.com/ems_api_definition/createmssstream</a></p>
+</div>
+<div class="section" id="create-dash-stream">
+<h2><code class="docutils literal"><span class="pre">create_dash_stream</span></code><a class="headerlink" href="#create-dash-stream" title="Permalink to this headline">¶</a></h2>
+<p>Create Dynamic Adaptive Streaming over HTTP (DASH) out of an existing
+H.264/AAC stream. DASH was developed by the Moving Picture Experts
+Group (MPEG) to establish a standard for HTTP adaptive-bitrate
+streaming that would be accepted by multiple vendors and facilitate
+interoperability.</p>
+<p>Required:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">localStreamNames</span></code> <cite>(str)</cite>:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">The stream(s) that will be used as the
+input. This is a comma-delimited list of active stream names
+(local stream names).</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">targetFolder</span></code> <cite>(str)</cite>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">The folder where all the manifest and fragment
+files will be stored. This folder must be accessible by the DASH
+clients. It is usually in the web-root of the server.</td>
+</tr>
+</tbody>
+</table>
+<p>Optional:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">bandwidths</span></code> <cite>(str)</cite>:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">The corresponding bandwidths for each stream listed
+in <code class="docutils literal"><span class="pre">localStreamNames</span></code>. Again, this can be a comma-delimited list.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">groupName</span></code> <cite>(str)</cite>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">The name assigned to the DASH stream or group. If
+the <code class="docutils literal"><span class="pre">localStreamNames</span></code> parameter contains only one entry and
+<code class="docutils literal"><span class="pre">groupName</span></code> is not specified, <code class="docutils literal"><span class="pre">groupName</span></code> will have the value of
+the input stream name.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">playlistType</span></code> <cite>(str)</cite>:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">Either <cite>appending</cite> or <cite>rolling</cite>.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">playlistLength</span></code> <cite>(int)</cite>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">The number of fragments before the server
+starts to overwrite the older fragments. Used only when
+<code class="docutils literal"><span class="pre">playlistType</span></code> is <cite>rolling</cite>. Ignored otherwise.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">manifestName</span></code> <cite>(str)</cite>:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">The manifest file name.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">chunkLength</span></code> <cite>(int)</cite>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">The length (in seconds) of fragments to be made.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">chunkOnIDR</span></code> <cite>(int)</cite>:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">If true, chunking is performed ONLY on IDR.
+Otherwise, chunking is performed whenever chunk length is
+achieved.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">keepAlive</span></code> <cite>(int)</cite>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">If true, the EMS will attempt to reconnect to the
+stream source if the connection is severed.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">overwriteDestination</span></code> <cite>(int)</cite>:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">If true, it will allow overwrite of
+destination files.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">staleRetentionCount</span></code> <cite>(int)</cite>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">How many old files are kept besides the
+ones present in the current version of the playlist. Only
+applicable for rolling playlists.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">cleanupDestination</span></code> <cite>(int)</cite>:</th></tr>
+<tr class="field-odd field"><td>&nbsp;</td><td class="field-body">If true, all manifest and fragment files in
+the target folder will be removed before DASH creation is started.</td>
+</tr>
+<tr class="field-even field"><th class="field-name" colspan="2"><code class="docutils literal"><span class="pre">dynamicProfile</span></code> <cite>(int)</cite>:</th></tr>
+<tr class="field-even field"><td>&nbsp;</td><td class="field-body">Set this parameter to 1 (default) for a live
+DASH, otherwise set it to 0 for a VOD.</td>
+</tr>
+</tbody>
+</table>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">api</span><span class="o">.</span><span class="n">create_dash_stream</span><span class="p">(</span><span class="s1">&#39;testpullStream&#39;</span><span class="p">,</span> <span class="s1">&#39;../evo-webroot&#39;</span><span class="p">,</span> <span class="n">groupName</span><span class="o">=</span><span class="s1">&#39;dash&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><a class="reference external" href="http://docs.evostream.com/ems_api_definition/createdashstream">http://docs.evostream.com/ems_api_definition/createdashstream</a></p>
 </div>
 <div class="section" id="list-streams-ids">
 <h2><code class="docutils literal"><span class="pre">list_streams_ids</span></code><a class="headerlink" href="#list-streams-ids" title="Permalink to this headline">¶</a></h2>
