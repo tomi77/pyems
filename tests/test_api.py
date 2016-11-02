@@ -281,5 +281,5 @@ class TranscodeTestCase(EmsTestCase):
 class StartWebRtcTestCase(EmsTestCase):
     def test_api(self):
         with mock.patch('pyems.protocols.HTTPConnection.getresponse', self.response):
-            out = self.api.start_web_rtc('52.6.14.61', '3535', 'ThisIsATestRoomName')
+            out = self.api.start_web_rtc('52.6.14.61', 3535, 'ThisIsATestRoomName')
             self.assertDictEqual(out, self.data['data'])

@@ -23,6 +23,6 @@ Example:
 
 .. sourcecode:: python
 
- api.start_web_rtc('52.6.14.61', '3535', 'ThisIsATestRoomName')
+ api.start_web_rtc('52.6.14.61', 3535, 'ThisIsATestRoomName')
 
 http://docs.evostream.com/ems_api_definition/startwebrtc

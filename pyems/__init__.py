@@ -1040,8 +1040,8 @@ class Api(object):
         :param ersip: IP address (xx.yy.zz.xx) of ERS.
         :type ersip: str
 
-        :param ersport: IP address (xx.yy.zz.xx) of ERS.
-        :type ersport: str
+        :param ersport: IP port of ERS.
+        :type ersport: int
 
         :param roomId: Unique room Identifier within ERS that will be used by
             client browsers to connect to this EMS.
