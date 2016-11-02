@@ -14,7 +14,7 @@ Required:
 
 :``ersip`` `(str)`: IP address (xx.yy.zz.xx) of ERS.
 
-:``ersport`` `(str)`: IP address (xx.yy.zz.xx) of ERS.
+:``ersport`` `(int)`: IP port of ERS.
 
 :``roomId`` `(str)`: Unique room Identifier within ERS that will be used by
     client browsers to connect to this EMS.
