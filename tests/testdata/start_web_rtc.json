@@ -1,0 +1,15 @@
+{
+  "data": {
+    "configId": 2,
+    "ersip": "52.6.14.61",
+    "ersport": 3535,
+    "keepAlive": true,
+    "name": "evostreamms",
+    "operationType": 9,
+    "roomid": "ThisIsATestRoomName",
+    "sslCert": "..\/config\/server.cert",
+    "sslKey": "..\/config\/server.key"
+  },
+  "description": "Started WebRTC Negotiation Service",
+  "status": "SUCCESS"
+}

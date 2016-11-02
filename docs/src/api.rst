@@ -9,3 +9,4 @@ EvoStream Media Server API
 
    api_streams
    api_aliasing
+   api_utility

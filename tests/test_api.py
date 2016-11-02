@@ -275,3 +275,11 @@ class TranscodeTestCase(EmsTestCase):
             out = self.api.transcode('rtmp://s2pchzxmtymn2k.cloudfront.net/cfx/st/mp4:sintel.mp4', 'stream1',
                                      groupName='group', videoBitrates='200k')
             self.assertDictEqual(out, self.data['data'])
+
+
+@mock.patch('pyems.protocols.HTTPConnection.request', mock.Mock())
+class StartWebRtcTestCase(EmsTestCase):
+    def test_api(self):
+        with mock.patch('pyems.protocols.HTTPConnection.getresponse', self.response):
+            out = self.api.start_web_rtc('52.6.14.61', '3535', 'ThisIsATestRoomName')
+            self.assertDictEqual(out, self.data['data'])
