@@ -123,7 +123,7 @@ Returns the group name given the alias name.
 Required:
 
 :``aliasName`` `(str)`:
-    The original group name.
+    The group name alias.
 
 Example:
 

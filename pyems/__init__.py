@@ -950,7 +950,7 @@ class Api(object):
         """
         Returns the group name given the alias name.
 
-        :param aliasName: The original group name
+        :param aliasName: The group name alias
         :type aliasName: str
 
         :link: http://docs.evostream.com/ems_api_definition/getgroupnamebyalias
