@@ -27,7 +27,7 @@
       "_callback": null,
       "audioCodecBytes": "",
       "configId": 1,
-      "emulateUserAgent": "EvoSt ream Media Server (www.evostream.com) player",
+      "emulateUserAgent": "EvoStream Media Server (www.evostream.com) player",
       "forceTcp": false,
       "httpProxy": "",
       "isAudio": true,
