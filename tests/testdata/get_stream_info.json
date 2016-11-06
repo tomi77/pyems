@@ -23,7 +23,7 @@
     "port": 1299,
     "processId": 12848,
     "processType": "origin",
-    "pullSetting s": {
+    "pullSettings": {
       "_callback": null,
       "audioCodecBytes": "",
       "configId": 1,
