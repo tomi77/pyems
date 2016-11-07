@@ -1,6 +1,6 @@
-from base64 import b64encode
 import json
 import socket
+from base64 import b64encode
 
 try:
     from httplib import HTTPConnection
