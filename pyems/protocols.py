@@ -1,6 +1,7 @@
 from base64 import b64encode
 import json
 import socket
+
 try:
     from httplib import HTTPConnection
 except ImportError:
@@ -16,8 +17,9 @@ SCHEMES = {
 
 
 class BaseProtocol(object):
-    def __init__(self, url):
-        self.url = url
+    def __init__(self, hostname, port):
+        self.hostname = hostname
+        self.port = port
 
     def get_result(self, command, **params):
         raise NotImplementedError()
@@ -41,7 +43,7 @@ class HTTPProtocol(BaseProtocol):
         return uri
 
     def get_result(self, command, **params):
-        conn = HTTPConnection(self.url)
+        conn = HTTPConnection("%s:%d" % (self.hostname, self.port))
         uri = self.make_uri(command, **params)
         try:
             conn.request('GET', uri)

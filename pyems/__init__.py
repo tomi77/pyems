@@ -14,7 +14,7 @@ class Api(object):
             protocol_class = get_module_class(SCHEMES[url.scheme])
         except KeyError:
             raise EvoStreamException('Invalid uri "%s"' % uri)
-        self.protocol = protocol_class('%s:%d' % (url.hostname, url.port))
+        self.protocol = protocol_class(url.hostname, url.port)
 
     @expected('uri', 'keepAlive', 'localStreamName', 'forceTcp', 'tcUrl',
               'pageUrl', 'swfUrl', 'rangeStart', 'rangeEnd', 'ttl', 'tos',
