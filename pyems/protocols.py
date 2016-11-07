@@ -51,7 +51,7 @@ class HTTPProtocol(BaseProtocol):
         return uri
 
     def get_result(self, command, **params):
-        conn = HTTPConnection("%s:%d" % (self.hostname, self.port))
+        conn = HTTPConnection(self.hostname, self.port)
         uri = self.make_uri(command, **params)
         try:
             conn.request('GET', uri)
