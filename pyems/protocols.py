@@ -32,6 +32,10 @@ class BaseProtocol(object):
         else:
             return result['data']
 
+    @staticmethod
+    def stringify_params(**params):
+        return ' '.join(['%s=%s' % (key, val) for key, val in params.items()])
+
     def execute(self, command, **params):
         result = self.get_result(command, **params)
 
@@ -39,12 +43,11 @@ class BaseProtocol(object):
 
 
 class HTTPProtocol(BaseProtocol):
-    @staticmethod
-    def make_uri(command, **params):
+    def make_uri(self, command, **params):
         uri = '/%s' % command
         if len(params) > 0:
-            str_params = ' '.join(['%s=%s' % (i, params[i]) for i in params])
-            uri += '?params=%s' % b64encode(str_params.encode('ascii')).decode()
+            str_params = self.stringify_params(**params).encode('ascii')
+            uri += '?params=%s' % b64encode(str_params).decode()
         return uri
 
     def get_result(self, command, **params):
