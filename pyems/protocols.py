@@ -24,8 +24,13 @@ class BaseProtocol(object):
     def get_result(self, command, **params):
         raise NotImplementedError()
 
-    def parse_result(self, result):
-        raise NotImplementedError()
+    @staticmethod
+    def parse_result(result):
+        result = json.loads(result)
+        if result['status'] == 'FAIL':
+            raise EvoStreamException(result['description'])
+        else:
+            return result['data']
 
     def execute(self, command, **params):
         result = self.get_result(command, **params)
@@ -52,17 +57,7 @@ class HTTPProtocol(BaseProtocol):
         response = conn.getresponse()
         return response.read()
 
-    def parse_result(self, result):
-        result = json.loads(result)
-        if result['status'] == 'FAIL':
-            raise EvoStreamException(result['description'])
-        else:
-            return result['data']
-
 
 class TelnetProtocol(BaseProtocol):
     def get_result(self, command, **params):
-        raise NotImplementedError('Telnet protocol is not implemented')
-
-    def parse_result(self, result):
         raise NotImplementedError('Telnet protocol is not implemented')
