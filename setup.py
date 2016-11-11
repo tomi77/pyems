@@ -8,7 +8,7 @@ setup(
     license='MIT',
     author='Tomasz Jakub Rup',
     author_email='tomasz.rup@gmail.com',
-    description='Python EMS API wrapper',
+    description='Python EMS (Evo Media Server) API wrapper',
     long_description=open('README.rst').read(),
     classifiers=[
         'Development Status :: 4 - Beta',
